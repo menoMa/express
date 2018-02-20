@@ -7,8 +7,13 @@ const env = require('./env/environment');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-// eslint-disable-next-line max-len
+// ローカルDB接続時のURI
+//const mongoUri = 'mongodb://localhost:27017/ExpressAPI';
+
+// Azure 公式チュートリアルに載っていたURI（mongoose v5.0.0以上だとUnhandledPromiseRejectionWarningが発生して接続できない
 //const mongoUri = `mongodb://${env.accountName}:${env.key}@${env.accountName}.documents.azure.com:${env.port}/?ssl=true&replicaSet=globaldb`;
+
+// mongoose v5.0.0以上に対応した URI
 const mongoUri = `mongodb://${env.accountName}.documents.azure.com:${env.port}/?ssl=true&replicaSet=globaldb`;
 
 mongoose.connect(mongoUri, {
@@ -17,7 +22,7 @@ mongoose.connect(mongoUri, {
         password: env.key
     }
 });
-// mongoose.connect('mongodb://localhost:27017/ExpressAPI');
+
 mongoose.connection.on('error', function (err) {
     console.error('MongoDB connection error: ' + err);
     process.exit(-1);
