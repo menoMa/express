@@ -13,6 +13,7 @@ var router = express.Router();
 
 // ファイルに分ける
 router.use('/article', require('./article.js'));
+router.use('/todo', require('./todo.js'));
 router.use('/user', require('./user.js'));
 router.use('/common', require('./common.js'));
 

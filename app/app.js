@@ -36,6 +36,14 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 3000; // port番号を指定
 
+//CORSを許可
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    next();
+});
+
 // 直書き
 // app.get('/app/v1', (req, res) => {
 //     res.json({
