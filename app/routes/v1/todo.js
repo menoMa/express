@@ -44,8 +44,6 @@ router.post('/new', function (req, res) {
 });
 
 router.put('/update/:id', function (req, res) {
-    console.log(req.params.id);
-    console.log(req.body);
 
     TodoModel.findByIdAndUpdate(req.params.id, req.body, (error, result) => {
         if (error) {
@@ -53,7 +51,6 @@ router.put('/update/:id', function (req, res) {
                 message: 'update Todo Error'
             });
         } else {
-            console.log(result);
             res.status(200).json({
                 message: "success update todo"
             });
@@ -69,7 +66,6 @@ router.delete('/delete/:id', (req, res) => {
                 message: 'delete Todo Error'
             });
         } else {
-            console.log(result);
             res.status(200).json({
                 message: "success delete todo"
             });
